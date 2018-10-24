@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -20,6 +21,8 @@ namespace _Superhero.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        internal readonly IEnumerable<object> superHeroes;
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
