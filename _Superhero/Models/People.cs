@@ -10,6 +10,8 @@ namespace _Superhero.Models
     {
              [Key]
             public int ID { get; set; }
+        [Required]
+        [StringLength(255)]
             public string Name { get; set; }
                 public int Age { get; set; }
             public string alterEgo { get; set; }
