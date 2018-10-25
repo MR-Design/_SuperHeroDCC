@@ -86,26 +86,31 @@ namespace _Superhero.Controllers
 
 
 
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-
-            return View();
+            var edditing = db.peoples.Where(e => e.ID == id).Select(e => e).SingleOrDefault();
+            return View(edditing);
         }
 
 
         [HttpPost]
-        public ActionResult Edit(int id, People people)
+        public ActionResult Edit(int id, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var edditing = db.peoples.Where(e => e.ID ==id).Select(e => e).SingleOrDefault();
+
+
+            edditing.Name = collection["Name"];
+            edditing.Age = Int32.Parse(collection["Age"]);
+            edditing.alterEgo = collection["alterEgo"];
+            edditing.primeryAbility = collection["primeryAbility"];
+            edditing.secondaryAbility = collection["secondaryAbility"];
+            edditing.catchphrase = collection["catchphrase"];
+
+            
+            db.SaveChanges();
+            return RedirectToAction("Index");
+         
         }
 
         // GET: Test/Delete/5
