@@ -17,10 +17,7 @@ namespace _Superhero.Controllers
         {
             db = new ApplicationDbContext();
         }
-        //protected override void Dispose (bool disposing)
-        //{
-        //    db.Dispose();
-        //}
+     
         // HttpGet
         public ActionResult Create()
         {
@@ -31,7 +28,6 @@ namespace _Superhero.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 db.peoples.Add(people);
                 db.SaveChanges();
 
@@ -43,47 +39,19 @@ namespace _Superhero.Controllers
             }
         }
 
-        //[HttpPost]
-        //public ActionResult Create(int id)
-        //{
-        //   //  List <People> Peoples = new List<People>();
-        //   //db.peoples.Add(people);
-        //    //peoples.Add()
 
-        //    var newPeople = db.peoples.Where(n => !n.ID.Equals(id)).SingleOrDefault();
-
-        //   // db.SubmitChanges(newPeople);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-
-        
-
-        public ActionResult Read()
-        {
-            return View();
-        }
-        ///
         public ActionResult Index()
         {
            var GettingSuperHeros= db.peoples.ToList();
             return View(GettingSuperHeros);
         }
 
-        // GET: Test/Details/5
-        public ActionResult Details()
+        public ActionResult Details(int id)
         {
-           
-            return RedirectToAction("Index");
-            //var editing = db.peoples.Where(e => e.ID == id).SingleOrDefault();
-            //if (editing == null)
-            //    return HttpNotFound(); // this should be a class
-            //return View(editing);
+            var superhero = db.peoples.Where(p => p.ID == id);
+            return View(superhero);
+
         }
-
-        // GET: Test/Create
-
-
 
 
         public ActionResult Edit(int id)
@@ -113,18 +81,6 @@ namespace _Superhero.Controllers
          
         }
 
-        // GET: Test/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        // POST: Test/Delete/5
-        //public ActionResult Delete()
-        //{
-        //    return RedirectToAction("Index");
-        //}
-       // [HttpPost]
         public ActionResult Delete(int id)
         {
                 var Deletting = db.peoples.Where(d => d.ID == id).Select(d => d).SingleOrDefault();
