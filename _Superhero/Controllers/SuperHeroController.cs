@@ -59,10 +59,6 @@ namespace _Superhero.Controllers
 
         
 
-        public ActionResult Edit()
-        {
-            return View();
-        }
         public ActionResult Read()
         {
             return View();
@@ -75,28 +71,30 @@ namespace _Superhero.Controllers
         }
 
         // GET: Test/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details()
         {
-            var editing = db.peoples.Where(e => e.ID == id).SingleOrDefault();
-            if (editing == null)
-                return HttpNotFound(); // this should be a class
-            return View(editing);
+           
+            return RedirectToAction("Index");
+            //var editing = db.peoples.Where(e => e.ID == id).SingleOrDefault();
+            //if (editing == null)
+            //    return HttpNotFound(); // this should be a class
+            //return View(editing);
         }
 
         // GET: Test/Create
-       
-       
 
-        // GET: Test/Edit/5
-        public ActionResult Edit(int id)
+
+
+
+        public ActionResult Edit()
         {
-          
+
             return View();
         }
 
-        // POST: Test/Edit/5
+
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, People people)
         {
             try
             {
@@ -117,25 +115,16 @@ namespace _Superhero.Controllers
         //}
 
         // POST: Test/Delete/5
-        public ActionResult Delete()
-        {
-            return RedirectToAction("Index");
-        }
-        [HttpPost]
+        //public ActionResult Delete()
+        //{
+        //    return RedirectToAction("Index");
+        //}
+       // [HttpPost]
         public ActionResult Delete(int id)
         {
-            try
-            {
-
                 var Deletting = db.peoples.Where(d => d.ID == id).Select(d => d).SingleOrDefault();
-
                 db.peoples.Remove(Deletting);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+                return RedirectToAction("Index");            
     }   }
 }
