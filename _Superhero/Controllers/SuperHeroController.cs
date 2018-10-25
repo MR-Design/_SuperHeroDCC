@@ -11,18 +11,51 @@ namespace _Superhero.Controllers
     public class SuperHeroController : Controller
     {
         // GET: SuperHero
-        public ApplicationDbContext db;
+        private ApplicationDbContext db;
 
         public SuperHeroController()
         {
             db = new ApplicationDbContext();
         }
-
-        [HttpPost]
-        public ActionResult Create(int id)
+        //protected override void Dispose (bool disposing)
+        //{
+        //    db.Dispose();
+        //}
+        // HttpGet
+        public ActionResult Create()
         {
-            return RedirectToAction("Index");
+            return View();
         }
+        [HttpPost]
+        public ActionResult Create(People people)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                db.peoples.Add(people);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        //[HttpPost]
+        //public ActionResult Create(int id)
+        //{
+        //   //  List <People> Peoples = new List<People>();
+        //   //db.peoples.Add(people);
+        //    //peoples.Add()
+
+        //    var newPeople = db.peoples.Where(n => !n.ID.Equals(id)).SingleOrDefault();
+
+        //   // db.SubmitChanges(newPeople);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         public ActionResult Delete()
         {
@@ -40,7 +73,6 @@ namespace _Superhero.Controllers
         ///
         public ActionResult Index()
         {
-            List<People> superHero = new List<People>();
            var GettingSuperHeros= db.peoples.ToList();
             return View(GettingSuperHeros);
         }
@@ -48,34 +80,20 @@ namespace _Superhero.Controllers
         // GET: Test/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var editing = db.peoples.Where(e => e.ID == id).SingleOrDefault();
+            if (editing == null)
+                return HttpNotFound(); // this should be a class
+            return View(editing);
         }
 
         // GET: Test/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Test/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
+       
 
         // GET: Test/Edit/5
         public ActionResult Edit(int id)
         {
+          
             return View();
         }
 

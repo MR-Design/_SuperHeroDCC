@@ -18,5 +18,7 @@ namespace _Superhero.Models
             public string primeryAbility { get; set; }
             public string secondaryAbility { get; set; }
             public string catchphrase { get; set; }
+
+        // Display atrute to chqnge names
     }
 }
