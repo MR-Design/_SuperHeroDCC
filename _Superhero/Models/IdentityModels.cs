@@ -21,6 +21,7 @@ namespace _Superhero.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet <People> peoples { get; set;}
         internal readonly IEnumerable<object> superHeroes;
 
         public ApplicationDbContext()
@@ -32,7 +33,8 @@ namespace _Superhero.Models
         {
             return new ApplicationDbContext();
         }
+       
 
-        public System.Data.Entity.DbSet<_Superhero.Models.People> People { get; set; }
+        //public System.Data.Entity.DbSet<_Superhero.Models.People> People { get; set; }
     }
 }

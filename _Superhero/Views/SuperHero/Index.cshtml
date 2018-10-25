@@ -17,9 +17,21 @@
         <th>
             @Html.DisplayNameFor(model => model.Age)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.alterEgo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.primeryAbility)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.secondaryAbility)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.catchphrase)
+        </th>
         <th></th>
     </tr>
-
+   
 @foreach (var item in Model) {
     <tr>
         <td>
@@ -29,10 +41,21 @@
             @Html.DisplayFor(modelItem => item.Age)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-          
+            @Html.DisplayFor(modelItem => item.alterEgo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.primeryAbility)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.secondaryAbility)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.catchphrase)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
     </tr>
 }

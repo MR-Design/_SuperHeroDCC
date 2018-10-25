@@ -1,6 +1,4 @@
-﻿using _Superhero.Models;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,41 +6,12 @@ using System.Web.Mvc;
 
 namespace _Superhero.Controllers
 {
-    public class SuperHeroController : Controller
+    public class TestController : Controller
     {
-        // GET: SuperHero
-        public ApplicationDbContext db;
-
-        public SuperHeroController()
-        {
-            db = new ApplicationDbContext();
-        }
-
-        [HttpPost]
-        public ActionResult Create(int id)
-        {
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult Delete()
-        {
-            return View();
-        }
-
-        public ActionResult Edit()
-        {
-            return View();
-        }
-        public ActionResult Read()
-        {
-            return View();
-        }
-        ///
+        // GET: Test
         public ActionResult Index()
         {
-            List<People> superHero = new List<People>();
-           var GettingSuperHeros= db.peoples.ToList();
-            return View(GettingSuperHeros);
+            return View();
         }
 
         // GET: Test/Details/5
@@ -115,5 +84,6 @@ namespace _Superhero.Controllers
             {
                 return View();
             }
-    }   }
+        }
+    }
 }
