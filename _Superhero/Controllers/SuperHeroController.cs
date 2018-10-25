@@ -57,10 +57,7 @@ namespace _Superhero.Controllers
         //    return RedirectToAction("Index");
         //}
 
-        public ActionResult Delete()
-        {
-            return View();
-        }
+        
 
         public ActionResult Edit()
         {
@@ -114,19 +111,26 @@ namespace _Superhero.Controllers
         }
 
         // GET: Test/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
 
         // POST: Test/Delete/5
+        public ActionResult Delete()
+        {
+            return RedirectToAction("Index");
+        }
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
 
+                var Deletting = db.peoples.Where(d => d.ID == id).Select(d => d).SingleOrDefault();
+
+                db.peoples.Remove(Deletting);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
